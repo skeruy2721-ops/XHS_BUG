@@ -41,7 +41,7 @@ public class VideoWatermark {
         try {
             Method method = methodData.getMethodInstance(loadPackageParam.classLoader);
             //拿完整方法签名
-            Log.i(TAG,methodData.getDescriptor());
+            Log.i(TAG,"视频水印方法"+methodData.getDescriptor());
             XposedBridge.hookMethod(method, XC_MethodReplacement.returnConstant(true));
         } catch (Throwable throwable) {
             return;

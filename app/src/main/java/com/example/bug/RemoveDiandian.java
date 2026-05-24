@@ -86,7 +86,7 @@ public class RemoveDiandian {
                 if (returnType != boolean.class && returnType != Boolean.class) {
                     continue;
                 }
-                Log.i(TAG,methodData.getDescriptor());//拿完整方法签名
+                Log.i(TAG,"点点所在方法"+methodData.getDescriptor());//拿完整方法签名
                 XposedBridge.hookMethod(method, new XC_MethodHook() {
                     @Override
                     protected void afterHookedMethod(MethodHookParam param) {
