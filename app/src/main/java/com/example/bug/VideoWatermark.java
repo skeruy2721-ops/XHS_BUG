@@ -21,15 +21,18 @@ public class VideoWatermark {
         if (bridge == null) {
             return;
         }
-        FieldData fieldData = bridge.getFieldData("Lcom/xingin/entities/MediaSaveConfig;->disableWaterMark:Z");//找到com.xingin.entities.MediaSaveConfig里面的disableWaterMark字段
+        //找到com.xingin.entities.MediaSaveConfig里面的disableWaterMark字段
+        FieldData fieldData = bridge.getFieldData("Lcom/xingin/entities/MediaSaveConfig;->disableWaterMark:Z");
         if (fieldData == null) {
             return;
         }
         MethodData methodData = fieldData.getReaders().findMethod(
                 FindMethod.create().matcher(
                         MethodMatcher.create()
-                                .paramTypes()//无参
-                                .returnType("boolean")//返回布尔类型
+                                //无参
+                                .paramTypes()
+                                //返回布尔类型
+                                .returnType("boolean")
                 )
         ).firstOrNull();
         if (methodData == null) {
@@ -37,7 +40,8 @@ public class VideoWatermark {
         }
         try {
             Method method = methodData.getMethodInstance(loadPackageParam.classLoader);
-            Log.i(TAG,methodData.getDescriptor());//拿完整方法签名
+            //拿完整方法签名
+            Log.i(TAG,methodData.getDescriptor());
             XposedBridge.hookMethod(method, XC_MethodReplacement.returnConstant(true));
         } catch (Throwable throwable) {
             return;
